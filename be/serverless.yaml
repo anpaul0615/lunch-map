@@ -1,0 +1,38 @@
+service: lunch-map-api
+
+useDotenv: true
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+  - serverless-domain-manager
+  - serverless-offline
+
+provider:
+  name: aws
+  region: ap-northeast-2
+  stage: dev
+  runtime: nodejs14.x
+  memorySize: 128
+  timeout: 10
+  lambdaHashingVersion: '20201221'
+
+functions:
+  App:
+    handler: src/lambda.handler
+    events:
+      - http:
+          path: /
+          method: any
+          cors: true
+      - http:
+          path: /{any+}
+          method: any
+          cors: true
+
+custom:
+  customDomain:
+    stage: ${self:provider.stage}
+    domainName: ${self:service}.anpaul0615.com
+    certificateName: '*.anpaul0615.com'
+    createRoute53Record: true
