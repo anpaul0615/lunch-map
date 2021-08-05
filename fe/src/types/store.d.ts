@@ -1,4 +1,18 @@
 export type StoreState = {
-  value: any;
-  values: Array<any>;
+  stores: Array<Store>;
+  registration: StoreRegistration;
+};
+
+export type Store = {
+  id: string;
+  name: string;
+  description: string;
+  locationWKT: string;
+};
+
+export type EditableStoreProperties = Omit<Store, 'id'>;
+
+export type StoreRegistration = {
+  isOpen: boolean;
+  input: EditableStoreProperties;
 };
