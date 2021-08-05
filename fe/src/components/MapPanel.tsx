@@ -59,7 +59,7 @@ const MapPanel: React.FC<Props> = () => {
   }, []);
 
   return (
-    <div id='map' style={{ width: '100vw', height: '100vh' }} />
+    <div id='map' style={{ width: '100%', height: '100%' }} />
   );
 };
 
